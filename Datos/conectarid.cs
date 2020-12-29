@@ -40,6 +40,38 @@ namespace NOMINA23
                 Console.WriteLine("error al intentar conectarnos con la BD:" + ex.ToString());
             }
         }
+        public string genera_corte(string fecha) {
+            string cadReg = "";
+            DataTable TablaReg = new DataTable();
+            try
+            {
+                /*adaptador de datos*/
+                SqlDataAdapter datos = new SqlDataAdapter("sp_corte_caja", con);/*(de donde saco los datos, con que coneccion lo hacemos)*/
+                datos.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                datos.SelectCommand.Parameters.Add("@fecha", Convert.ToDateTime(fecha));
+              
+
+                datos.Fill(TablaReg);/*estamos llenando la tabla*/
+
+                /*descomponiendo la tabla*/
+                for (int i = 0; i < TablaReg.Rows.Count; i++)
+                {
+                    for (int j = 0; j < TablaReg.Columns.Count; j++)
+                    {
+                        cadReg += TablaReg.Rows[i][j].ToString() + "|";
+                    }
+                    cadReg += "$";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error al recuperar los datos:" + ex.ToString());
+            }
+            con.Close();
+            return cadReg;
+        }
         public  DataTable IDVENDEDOR()
         {
             
