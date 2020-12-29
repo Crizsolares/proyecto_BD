@@ -72,6 +72,7 @@
     <Content Include="Web.config" />
     <Content Include="Frontal\WebForm1.aspx" />
     <Content Include="Frontal\WebForm2.aspx" />
+    <Content Include="corte.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\conectarid.cs" />
@@ -96,6 +97,13 @@
     </Compile>
     <Compile Include="Frontal\WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="corte.aspx.cs">
+      <DependentUpon>corte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="corte.aspx.designer.cs">
+      <DependentUpon>corte.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
