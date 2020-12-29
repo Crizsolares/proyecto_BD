@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Sistema.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <title>BONITOS Y GORDITOS</title>
+    <style type="text/css">
+
+			
+			* {
+				margin:0px;
+				padding:0px;
+			}
+			
+			#header {
+				margin:auto;
+				width:0px;
+				font-family:Arial, Helvetica, sans-serif;
+			}
+			
+			ul, ol {
+				list-style:none;
+                    width: 500px;
+                }
+			
+			.nav > li {
+				float:left;
+                    width: 124px;
+                }
+			
+			.nav li a {
+				background-color:#800040;
+				color:#fff;
+				text-decoration:none;
+				padding:10px 12px;
+				display:block;
+			}
+			
+			.nav li a:hover {
+				background-color:#434343;
+			}
+			
+			.nav li ul {
+				display:none;
+				position:absolute;
+				min-width:0px;
+			}
+			
+			.nav li:hover > ul {
+				display:block;
+                width: 200px;
+			}
+			
+			.nav li ul li {
+				position:relative;
+			}
+			
+			.nav li ul li ul {
+				right:-140px;
+				top:200px;
+			}
+			
+		.auto-style1 {
+            width: 120px;
+        }
+			
+		.auto-style2 {
+            width: 63px;
+        }
+			
+		</style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="header" class="auto-style2">
+        <ul class="nav">
+            <li id="Fila2"><a href="WebForm2.aspx">Inicio</a>
+              
+            </li>
+            <li id="Fila3"><a href="Compras.aspx">Compras</a>
+                <ul>
+                    <li id="Fila3_1"><a href="OrdendeCompra.aspx">Orden de Compra</a></li>
+                    <li id="Fila3_2"><a href="ResumendeCompras.aspx">Resumen de Compras</a></li>
+                </ul>
+            </li>
+            <li id="Fila4" class="auto-style1"><a href="Ventas.aspx">Ventas</a>
+                <ul>
+                    <li id="Fila4_1"><a href="OrdendeVenta.aspx">Orden de Venta</a></li>
+                    <li id="Fila4_2"><a href="InicioTiempo.aspx">Control de los Tiempos</a></li>
+                    <li id="Fila4_3"><a href="regmaterialdañado.aspx">Trabajos Dañados</a></li>
+                </ul>
+            </li>
+			<li id="Fila5"><a href="WebForm1.aspx">Empleados</a>
+                
+            </li>
+        </ul>
+    </div>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
