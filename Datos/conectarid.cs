@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Configuration;
 
-/*rama R*/
+/*rama */
 namespace NOMINA23
 {
     public class conectarid
