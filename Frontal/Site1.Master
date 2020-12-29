@@ -88,11 +88,7 @@
                 </ul>
             </li>
             <li id="Fila4" class="auto-style1"><a href="corte.aspx">Ventas</a>
-                <ul>
-                    <li id="Fila4_1"><a href="corte.aspx">Orden de Venta</a></li>
-                    <li id="Fila4_2"><a href="InicioTiempo.aspx">Control de los Tiempos</a></li>
-                    <li id="Fila4_3"><a href="regmaterialdañado.aspx">Trabajos Dañados</a></li>
-                </ul>
+                
             </li>
 			<li id="Fila5"><a href="WebForm1.aspx">Empleados</a>
                 
