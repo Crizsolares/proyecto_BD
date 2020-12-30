@@ -6,6 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
    <title>BONITOS Y GORDITOS</title>
+	<link rel="stylesheet" type="text/css" href="~/Frontal/estilos/estilos_corte.css" media="screen" />
     <style type="text/css">
 
 			
