@@ -13,6 +13,7 @@ using iText.Kernel.Geom;
 using iText.Layout.Element;
 using iText.Kernel.Font;
 using iText.IO.Font.Constants;
+using System.Data;
 
 namespace NOMINA23
 {
@@ -95,6 +96,17 @@ namespace NOMINA23
         }
 
         private void crea_pdf() {
+            DataTable tabla = new DataTable();
+            tabla = cbd.genra_reporte("2020-12-31");
+
+
+
+            // Declare an object variable.
+            object sumObject;
+            sumObject = tabla.Compute("Sum(num_arti)", string.Empty);
+
+
+            
             PdfWriter pdfWriter = new PdfWriter("C:\\Users\\crizs\\proyecto_BD\\Reporte.pdf");
             PdfDocument pdf = new PdfDocument(pdfWriter);
             Document document = new Document(pdf,PageSize.A4);
