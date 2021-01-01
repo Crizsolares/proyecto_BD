@@ -102,7 +102,7 @@ namespace NOMINA23
             document.SetMargins(60,20,55,20);
             PdfFont fontColumnas = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
             PdfFont fontContenido = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
-            string[] columnas = { };
+            
             var parrafo = new Paragraph("Hola mundoo");
             document.Add(parrafo);
             document.Close();
