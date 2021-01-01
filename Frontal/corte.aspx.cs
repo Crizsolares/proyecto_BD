@@ -14,6 +14,7 @@ using iText.Layout.Element;
 using iText.Kernel.Font;
 using iText.IO.Font.Constants;
 using System.Data;
+using iText.Layout.Properties;
 
 namespace NOMINA23
 {
@@ -32,22 +33,22 @@ namespace NOMINA23
         protected void genera_corte_Click(object sender, EventArgs e)
         {
             fecha_corte = calFcorte.SelectedDate.ToString();
-            
+
             string datReci = null;/*aqui recibiremos los datos*/
             string secReg = "";/*secmento por registro aqui*/
             string secCad = "";/*cada uno tiene un atributo*/
             /*controlaremos el siclo or la longitud de cadena y registro*/
             int lonReg = 0, lonCad = 0, caso = 0;
-            double totalar=0,totalmon =0;
+            double totalar = 0, totalmon = 0;
             // System.Windows.Forms.ListViewItem lista = new System.Windows.Forms.ListViewItem();
-             
 
 
 
 
-            datReci =cbd.genera_corte(fecha_corte);
+
+            datReci = cbd.genera_corte(fecha_corte);
             lonCad = datReci.Length;/*cuarda la longitud de la cadena que reciobio de la DB*/
-            
+
             while (lonCad > 1)
             {
                 tablaPres += "<tr>";/*abre renglon*/
@@ -59,22 +60,24 @@ namespace NOMINA23
                 {
                     secCad = secReg.Substring(0, secReg.IndexOf("|"));
                     secReg = secReg.Substring(secReg.IndexOf("|") + 1);
-                    
-                    switch (caso) {
+
+                    switch (caso)
+                    {
                         case 0:
                             tablaPres += "<td class=\"td_t\">" + secCad + "</td>";
-                            
+
                             break;
                         case 1:
                             tablaPres += "<td class=\"td_t\">" + secCad + "</td>";
-                            totalmon=totalmon+Double.Parse(secCad);
+                            totalmon = totalmon + Double.Parse(secCad);
                             break;
                         case 2:
                             tablaPres += "<td class=\"td_t\">" + secCad + "</td>";
                             totalar = totalar + Double.Parse(secCad);
                             break;
-                    }caso++;
-                                       
+                    }
+                    caso++;
+
                     lonReg = secReg.Length;/*longitud de la cadena despues del corte*/
                 }
                 tablaPres += "</tr>";
@@ -82,7 +85,7 @@ namespace NOMINA23
                 lonCad = datReci.Length;
             }
 
-            total = "<tr  class=\"total\">" + "<th class=\"th_t\">" + "Total"+ "</th>"+ "<th class=\"th_t\">" + Convert.ToString(totalmon) + "</th>"+ "<th class=\"th_t\">" + Convert.ToString(totalar) + "</th>" + "</tr>";
+            total = "<tr  class=\"total\">" + "<th class=\"th_t\">" + "Total" + "</th>" + "<th class=\"th_t\">" + Convert.ToString(totalmon) + "</th>" + "<th class=\"th_t\">" + Convert.ToString(totalar) + "</th>" + "</tr>";
         }
 
         protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,28 +98,50 @@ namespace NOMINA23
             crea_pdf();
         }
 
-        private void crea_pdf() {
+        private void crea_pdf()
+        {
             DataTable tabla = new DataTable();
             tabla = cbd.genra_reporte("2020-12-31");
 
 
 
             // Declare an object variable.
-            object sumObject;
-            sumObject = tabla.Compute("Sum(num_arti)", string.Empty);
+            object sumarti, sumTotal;
+            sumarti = tabla.Compute("Sum(num_arti)", string.Empty);
+            sumTotal = tabla.Compute("Sum(total)", string.Empty);
 
 
-            
+
             PdfWriter pdfWriter = new PdfWriter("C:\\Users\\crizs\\proyecto_BD\\Reporte.pdf");
             PdfDocument pdf = new PdfDocument(pdfWriter);
-            Document document = new Document(pdf,PageSize.A4);
+            Document document = new Document(pdf, PageSize.A4);
 
-            document.SetMargins(60,20,55,20);
+            document.SetMargins(60, 20, 55, 20);
             PdfFont fontColumnas = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
             PdfFont fontContenido = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
-            
-            var parrafo = new Paragraph("Hola mundoo");
-            document.Add(parrafo);
+
+            string[] columnas = { "Fecha", "Articulos", "Total" };
+            float[] tamanio = { 6, 2, 2 };
+            iText.Layout.Element.Table tablaimprime = new iText.Layout.Element.Table(UnitValue.CreatePercentArray(tamanio));
+            tablaimprime.SetWidth(UnitValue.CreatePercentValue(100));
+            foreach (string columna in columnas)
+            {
+                tablaimprime.AddHeaderCell(new Cell().Add(new Paragraph(columna).SetFont(fontColumnas)));
+            }
+
+            for (int i = 0; i < tabla.Rows.Count; i++)
+            {
+                for (int j = 0; j < tabla.Columns.Count; j++)
+                {
+                    tablaimprime.AddCell(new Cell().Add(new Paragraph(tabla.Rows[i][j].ToString()).SetFont(fontContenido)));
+                }
+            }
+            tablaimprime.AddCell(new Cell().Add(new Paragraph("Total: ").SetFont(fontColumnas)));
+            tablaimprime.AddCell(new Cell().Add(new Paragraph(sumarti.ToString()).SetFont(fontColumnas)));
+            tablaimprime.AddCell(new Cell().Add(new Paragraph(sumTotal.ToString()).SetFont(fontColumnas)));
+
+
+            document.Add(tablaimprime);
             document.Close();
         }
     }
