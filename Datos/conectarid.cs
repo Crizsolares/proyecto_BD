@@ -41,6 +41,24 @@ namespace NOMINA23
                 Console.WriteLine("error al intentar conectarnos con la BD:" + ex.ToString());
             }
         }
+        public DataTable genra_reporte(string fecha_fin) {
+            DataTable TablaReg = new DataTable();
+            
+            try
+            {
+                SqlDataAdapter cmd = new SqlDataAdapter("sp_reporte", con);/*se co0necta con el procedimiento*/
+                cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
+                cmd.SelectCommand.Parameters.Add("@fec_fin", Convert.ToDateTime(fecha_fin));
+                cmd.Fill(TablaReg);
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("transaciion no esxitosa" + ex.ToString());
+            }
+            return TablaReg;
+
+        }
         public string genera_corte(string fecha) {
             string cadReg = "";
             DataTable TablaReg = new DataTable();
