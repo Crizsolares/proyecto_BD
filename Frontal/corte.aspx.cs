@@ -7,7 +7,12 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using System.Xml.Linq;
 using System.Drawing;
-
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Kernel.Geom;
+using iText.Layout.Element;
+using iText.Kernel.Font;
+using iText.IO.Font.Constants;
 
 namespace NOMINA23
 {
@@ -82,6 +87,25 @@ namespace NOMINA23
         protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void genera_pdf_Click(object sender, EventArgs e)
+        {
+            crea_pdf();
+        }
+
+        private void crea_pdf() {
+            PdfWriter pdfWriter = new PdfWriter("C:\\Users\\crizs\\proyecto_BD\\Reporte.pdf");
+            PdfDocument pdf = new PdfDocument(pdfWriter);
+            Document document = new Document(pdf,PageSize.A4);
+
+            document.SetMargins(60,20,55,20);
+            PdfFont fontColumnas = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+            PdfFont fontContenido = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+            string[] columnas = { };
+            var parrafo = new Paragraph("Hola mundoo");
+            document.Add(parrafo);
+            document.Close();
         }
     }
 }

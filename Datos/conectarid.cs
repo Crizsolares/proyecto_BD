@@ -29,6 +29,7 @@ namespace NOMINA23
             con = new SqlConnection(cadConexion);
         }
 
+
         private void conBD()
         {/*metodo de conecion */
             try
