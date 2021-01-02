@@ -89,7 +89,11 @@
                 </ul>
             </li>
             <li id="Fila4" class="auto-style1"><a href="corte.aspx">Ventas</a>
-                
+                <ul>
+                    <li id="Fila4_1"><a href="corte.aspx">Corte de caja</a></li>
+                    <li id="Fila4_2"><a href="Reporte.aspx">Reporte semanal</a></li>
+                    
+                </ul>
             </li>
 			<li id="Fila5"><a href="WebForm1.aspx">Empleados</a>
                 
