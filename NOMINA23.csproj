@@ -111,6 +111,7 @@
     <Content Include="Frontal\WebForm1.aspx" />
     <Content Include="Frontal\WebForm2.aspx" />
     <Content Include="Frontal\corte.aspx" />
+    <Content Include="Frontal\Reporte.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\conectarid.cs" />
@@ -142,6 +143,13 @@
     </Compile>
     <Compile Include="Frontal\corte.aspx.designer.cs">
       <DependentUpon>corte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontal\Reporte.aspx.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontal\Reporte.aspx.designer.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,7 @@
             
              
         </table>
-         <asp:Button ID="genera_pdf" runat="server" Text="pdf" OnClick="genera_pdf_Click" />
+         
 
     </div>
          </div>
