@@ -15,6 +15,7 @@ using iText.Kernel.Font;
 using iText.IO.Font.Constants;
 using System.Data;
 using iText.Layout.Properties;
+using Image = iText.Layout.Element.Image;
 
 namespace NOMINA23
 {
@@ -140,9 +141,37 @@ namespace NOMINA23
             tablaimprime.AddCell(new Cell().Add(new Paragraph(sumarti.ToString()).SetFont(fontColumnas)));
             tablaimprime.AddCell(new Cell().Add(new Paragraph(sumTotal.ToString()).SetFont(fontColumnas)));
 
-
             document.Add(tablaimprime);
             document.Close();
+
+            var logo = new iText.Layout.Element.Image(iText.IO.Image.ImageDataFactory.Create("C:/Users/crizs/proyecto_BD/logo.png")).SetWidth(50);
+            var plogo = new Paragraph("").Add(logo);
+
+            var titulo = new Paragraph("Reporte de Ventas Semanal");
+            titulo.SetTextAlignment(TextAlignment.CENTER);
+            titulo.SetFontSize(12);
+            var dfecha = DateTime.Now.ToString("yyyy-MM-dd");
+            var dhora = DateTime.Now.ToString("hh:mm:ss");
+            var fecha = new Paragraph("Fecha: "+dfecha+"\nHora: " +dhora);
+            /*hay que crear un pdf apartir del anteriro para gregar encabezado y pie de pagina*/
+            PdfDocument pdfdoc = new PdfDocument(new PdfReader("C:\\Users\\crizs\\proyecto_BD\\Reporte.pdf"),new PdfWriter ("C:\\Users\\crizs\\proyecto_BD\\ReportePdf.pdf"));
+            Document doc = new Document(pdfdoc);
+
+            int numeros = pdfdoc.GetNumberOfPages();
+
+            for (int i=1; i<= numeros; i++) {
+                PdfPage pagina = pdfdoc.GetPage(i);
+                float y = (pdfdoc.GetPage(i).GetPageSize().GetTop() - 15);
+                doc.ShowTextAligned(plogo,40,y+8,i,TextAlignment.CENTER,VerticalAlignment.TOP,0);
+                doc.ShowTextAligned(titulo,250,y -15,i,TextAlignment.CENTER,VerticalAlignment.TOP,0);
+                doc.ShowTextAligned(fecha,520,y -15,i,TextAlignment.CENTER,VerticalAlignment.TOP,0);
+
+                doc.ShowTextAligned(new Paragraph(string.Format("página {0} de {1}",i,numeros)),pdfdoc.GetPage(1).GetPageSize().GetWidth()/2,pdfdoc.GetPage(i).GetPageSize().GetBottom()+30,i,TextAlignment.CENTER,VerticalAlignment.TOP,0);
+
+
+                
+            }
+            doc.Close();
         }
     }
 }
