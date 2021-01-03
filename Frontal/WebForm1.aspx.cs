@@ -73,6 +73,7 @@ namespace NOMINA23
         }
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             listavendedor.Text = GridView1.SelectedRow.Cells[1].Text;
             txtnombre.Text = GridView1.SelectedRow.Cells[2].Text;
             txtapa.Text = GridView1.SelectedRow.Cells[3].Text;

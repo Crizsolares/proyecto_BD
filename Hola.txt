@@ -1,1 +1,57 @@
-Hola, esto es una pruba :)
+--|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+--Manejar datos proveedores--------------------------------------------------------------------------------------------------------------------
+--No devuelve datos
+create procedure SP_ManejaDatosProveedores(
+	@idProve as smallint,
+	@nomProve as nvarchar(100),
+    @dirProve as nvarchar(250),
+    @rfcProve as nvarchar(13),
+    @telProve as nvarchar(20),
+	@tipOperProve as smallint
+)
+as
+begin
+	if(@tipOperProve=1)	--Agregar
+		begin
+			insert into Proveedores values 
+			(@nomProve, @dirProve, @rfcProve, @telProve);
+		end
+	if(@tipOperProve=2) --Modificar
+		begin
+			update Proveedores set 
+				nom_prov=@nomProve,
+				dir_prov=@dirProve,
+				rfc_prov=@rfcProve,
+				tel_prov=@telProve
+			where id_prov=@idProve;
+		end
+	if(@tipOperProve=3) --Eliminar
+		begin
+			delete from Proveedores 
+			where id_prov=@idProve;
+		end
+end;
+
+--Manejar datos proveedores--------------------------------------------------------------------------------------------------------------------
+--Sí regresa datos
+create procedure SP_RegresaDatosProveedores(
+	@idProve smallint,
+	@tipOperProve smallint)
+as
+begin
+	if(@tipOperProve=1)
+		begin
+			select *from Proveedores where id_prov=@idProve;
+		end
+	else
+	begin
+		select *from Proveedores;
+	end
+end;
+
+--ID Proveedores--------------------------------------------------------------------------------------------------------------------
+create procedure SP_IdProveedor  
+as
+begin
+	select id_prov from Proveedores
+end

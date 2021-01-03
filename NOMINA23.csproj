@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Frontal\Proveedores.aspx" />
     <Content Include="HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Frontal\WebForm1.aspx" />
@@ -75,6 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\conectarid.cs" />
+    <Compile Include="Frontal\Proveedores.aspx.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontal\Proveedores.aspx.designer.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Frontal\Site1.Master.cs">
       <SubType>ASPXCodeBehind</SubType>

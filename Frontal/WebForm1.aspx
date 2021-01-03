@@ -48,10 +48,10 @@
         <div style="text-align:center;">
           <table border="2" style="margin: 0 auto;">
             <tr>
-              <td colspan="3"><h1 align="center">&nbsp;</h1>
+              <th colspan="3"><h1 align="center">&nbsp;</h1>
                   <h1 align="center"><asp:Label ID="Label1" runat="server" Text="EMPLEADOS"></asp:Label></h1>
                   <p align="center">&nbsp;</p>
-              </td>
+              </th>
             </tr>
                     
             <tr>        

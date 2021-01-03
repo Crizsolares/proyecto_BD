@@ -81,10 +81,10 @@
             <li id="Fila2"><a href="WebForm2.aspx">Inicio</a>
               
             </li>
-            <li id="Fila3"><a href="Compras.aspx">Compras</a>
+            <li id="Fila3"><a href="EntradaDeMercancia.aspx">Compras</a>
                 <ul>
-                    <li id="Fila3_1"><a href="OrdendeCompra.aspx">Orden de Compra</a></li>
-                    <li id="Fila3_2"><a href="ResumendeCompras.aspx">Resumen de Compras</a></li>
+                    <li id="Fila3_1"><a href="EntradaDeMercancia.aspx">Resumen</a></li>
+                    <li id="Fila3_2"><a href="Proveedores.aspx">Proveedores</a></li>
                 </ul>
             </li>
             <li id="Fila4" class="auto-style1"><a href="Ventas.aspx">Ventas</a>
